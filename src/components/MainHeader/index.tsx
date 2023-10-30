@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import Toggle from '../Toggle';
 
 import logoImg from '../../assets/logo.svg';
@@ -25,7 +25,10 @@ import {
     SubLi,
 } from './styles';
 
+
+
 import { MdClose, MdMenu, MdOutlineKeyboardArrowDown, MdOutlineViewKanban } from 'react-icons/md';
+
 
 
 const MainHeader: React.FC = () => {
@@ -99,6 +102,44 @@ const MainHeader: React.FC = () => {
         </Menu>
     );
 
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef<HTMLButtonElement>(null);
+
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+
+    const handleClose = (event: Event | React.SyntheticEvent) => {
+        if (
+            anchorRef.current &&
+            anchorRef.current.contains(event.target as HTMLElement)
+        ) {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    function handleListKeyDown(event: React.KeyboardEvent) {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        } else if (event.key === 'Escape') {
+            setOpen(false);
+        }
+    }
+
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+    React.useEffect(() => {
+        if (prevOpen.current === true && open === false) {
+            anchorRef.current!.focus();
+        }
+
+        prevOpen.current = open;
+    }, [open]);
+
+    const SubMenu = Menu;
 
     return (
         <Container>
@@ -131,6 +172,17 @@ const MainHeader: React.FC = () => {
                         <CaretDownOutlined />
                     </Space>
                 </Dropdown>
+
+                <Menu mode="horizontal">
+                
+                <Menu.SubMenu icon={<SettingFilled />} title="Configurações">
+                    <Menu.Item>Programas</Menu.Item>
+                </Menu.SubMenu>
+                <Menu.SubMenu icon={<UserOutlined />} title="Lançamento Entrada">
+                    <Menu.Item>victorseraphin@gmail.com</Menu.Item>
+                </Menu.SubMenu>
+            </Menu>
+
                 {/*
                 <Dropdown menu={{ items }} placement="bottomRight" trigger={['click']} arrow>
                     <a onClick={(e) => e.preventDefault()} style={{ marginLeft: '30px' }}>

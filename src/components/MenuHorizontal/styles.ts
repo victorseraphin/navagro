@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled,{ css, StyledComponent  } from 'styled-components';
+import {Menu}  from "antd";
 
 
 interface IContainerProps {
@@ -194,4 +195,157 @@ export const ThemeToggleFooter = styled.footer<IThemeToggleFooterProps>`
         display: ${props => props.menuIsOpen ? 'flex' : 'none'};
     }
 
+`;
+export const MenuAntd = styled(Menu)`
+
+&& .ant-menu-item {
+    font-size: 14px;
+    color: gray;
+    text-decoration: none;
+
+    padding-left:10px;
+    padding-right:10px;
+   
+    flex-direction: column;
+    display: flex;
+    align-items: center;   
+    justify-content: center;
+
+    border-left:1px solid #d9d9d9;   
+    border-right:1px solid #d9d9d9;   
+
+    transition: opacity .3s;   
+
+}
+&& .ant-menu-title-content{    
+    flex-direction: column;
+    display: flex;
+    align-items: center;   
+    justify-content: center;
+
+    > svg {
+        font-size: 24px;
+        margin-top:5px
+    }
+    > span {
+        margin-top: -12px;
+        margin-bottom: -5px;
+    }
+}
+
+&& .ant-menu-item:hover::after {
+    border-bottom: 0px solid transparent;    
+}
+
+&& .ant-menu-item-selected {
+    border-bottom: 3px solid #ff7f74;
+    border-radius: 0px;
+    color: #383838;
+}    
+
+&& .ant-menu-item-selected:after {
+    border-bottom-width: 0px;        
+    border-bottom-color: transparent;
+}
+
+&& .ant-menu-submenu:hover::after {
+    border-bottom: 0px solid transparent;    
+}
+
+&& .ant-menu-submenu-selected {
+    border-bottom: 3px solid #ff7f74;
+    border-radius: 0px;
+    color: #ff7f74;
+}    
+
+&& .ant-menu-submenu-selected:after {
+    border-bottom-width: 0px;        
+    border-bottom-color: transparent;
+}  
+
+
+
+`;
+export const SubMenuAntd = styled(Menu)`
+    border-right:1px solid #d9d9d9;   
+    justify-content: center;    
+&& .ant-menu-submenu-title{
+    font-size: 14px;
+    color: ${props => props.theme.colors.gray};
+    text-decoration: none;
+    transition: opacity .3s;
+    flex-direction: column;
+    display: flex;
+    align-items: center;   
+    justify-content: center;
+
+    > svg {
+        font-size: 24px;
+        margin-top:5px;
+        margin-left: 2px;        
+    }
+    > span {
+        margin-top: -12px;
+        margin-bottom: -5px;
+        margin-left:-1px;
+    }
+  
+}
+&.ant-menu-submenu-arrow {
+    ::before {
+      background: red
+    }
+  }
+
+
+
+& .ant-menu-submenu:hover::after {
+    border-bottom: 0px solid transparent;    
+}
+
+& .ant-menu-submenu-selected {
+    border-bottom: 3px solid #ff7f74;
+    border-radius: 0px;
+    color: green;
+}    
+
+& .ant-menu-submenu-selected:after {
+    border-bottom-width: 0px;        
+    border-bottom-color: transparent;
+}  
+
+
+
+& .ant-menu-submenu-title::before {
+    color: green;
+}  
+`;
+
+export const MenuItemLinkRight2 = styled.a`
+    font-size: 14px;
+    color: ${props => props.theme.colors.gray};
+    text-decoration: none;
+
+    padding-left:10px;
+    padding-right:10px;
+   
+    flex-direction: column;
+    display: flex;
+    align-items: center;   
+    justify-content: center;
+
+    border-left:1px solid #d9d9d9;   
+    border-right:1px solid #d9d9d9;   
+
+    transition: opacity .3s;
+
+    &:hover {
+        color:#7F8C8D;
+    }
+
+    > svg {
+        font-size: 24px;
+        margin-right: 5px;
+    }
+    
 `;
