@@ -38,17 +38,17 @@ const ThemeProvider: React.FC = ({ children }) => {
         if(themeSaved) {
             return JSON.parse(themeSaved);
         }else{
-            return dark;
+            return light;
         }
     });
 
     const toggleTheme = () => {
-        if(theme.title == 'dark'){
-            setTheme(light);
-            localStorage.setItem('@websitenavagro:theme', JSON.stringify(light));
-        }else{
+        if(theme.title === 'dark'){
             setTheme(dark);
             localStorage.setItem('@websitenavagro:theme', JSON.stringify(dark));
+        }else{
+            setTheme(light);
+            localStorage.setItem('@websitenavagro:theme', JSON.stringify(light));
         }
     };
 

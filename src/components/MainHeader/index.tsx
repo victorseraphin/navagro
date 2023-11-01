@@ -1,34 +1,23 @@
 import React, { useState } from 'react';
 import Toggle from '../Toggle';
 
-import logoImg from '../../assets/logo.svg';
-
 import { useAuth } from '../../hooks/auth';
 import { useTheme } from '../../hooks/theme';
 
-import { CaretDownOutlined, UserOutlined, SettingFilled, MenuOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { CaretDownOutlined, UserOutlined, SettingFilled } from '@ant-design/icons';
 import { Dropdown, Space, Menu } from 'antd';
 
 import {
     Container,
     Profile,
-    Welcome,
-    UserName,
     Header,
     ToggleMenu,
-    LogImg,
     Title,
-    DropDown,
-    DropDownContent,
-    DropdownToggle,
-    SubLi,
 } from './styles';
 
-
-
-import { MdClose, MdMenu, MdOutlineKeyboardArrowDown, MdOutlineViewKanban } from 'react-icons/md';
+import { MdClose, MdMenu } from 'react-icons/md';
 import Link from 'antd/es/typography/Link';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -49,11 +38,13 @@ const MainHeader: React.FC = () => {
     const handleToggleMenu = () => {
         setToggleMenuIsOpened(!toggleMenuIsOpened);
     }
+
+    const history = useHistory();
     const menuProfile = (
         <Menu mode="inline">
             <Menu.ItemGroup >
-                <Menu.Item className="cursor-pointer p-2" key="1" >
-                    <a href="/meus_dados">Perfil</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="1" >
+                    Perfil
                 </Menu.Item>
                 <Menu.Item className="cursor-pointer p-2" key="2" onClick={signOut}>
                     Sair
@@ -64,26 +55,26 @@ const MainHeader: React.FC = () => {
     const menuConfig = (
         <Menu mode="inline">
             <Menu.ItemGroup >
-                <Menu.Item className="cursor-pointer p-2" key="1" >
-                    <a href="/list/entry-balance">Programas</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="1" >
+                    Programas
                 </Menu.Item>
-                <Menu.Item className="cursor-pointer p-2" key="2">
-                    <a href="/list/entry-balance">Grupos</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="2">
+                    Grupos
                 </Menu.Item>
-                <Menu.Item className="cursor-pointer p-2" key="3">
-                    <a href="/list/entry-balance">Empresas</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="3">
+                    Empresas
                 </Menu.Item>
-                <Menu.Item className="cursor-pointer p-2" key="4">
-                    <a href="/list/entry-balance">Usuários</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="4">
+                    Usuários
                 </Menu.Item>
-                <Menu.Item className="cursor-pointer p-2" key="5">
-                    <a href="/list/entry-balance">Estados</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="5">
+                    Estados
                 </Menu.Item>
-                <Menu.Item className="cursor-pointer p-2" key="6">
-                    <a href="/list/entry-balance">Cidades</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="6">
+                    Cidades
                 </Menu.Item>
-                <Menu.Item className="cursor-pointer p-2" key="7">
-                    <a href="/list/entry-balance">Endereços</a>
+                <Menu.Item onClick={()=>history.push("/relatoriogerencial/dre")} className="cursor-pointer p-2" key="7">
+                    Endereços
                 </Menu.Item>
             </Menu.ItemGroup>
         </Menu>
@@ -102,7 +93,6 @@ const MainHeader: React.FC = () => {
         prevOpen.current = open;
     }, [open]);
 
-    const SubMenu = Menu;
 
     return (
         <Container>
@@ -140,18 +130,6 @@ const MainHeader: React.FC = () => {
                         </Space>
                     </Dropdown>
                 </Link>
-
-                {/*
-                <Dropdown menu={{ items }} placement="bottomRight" trigger={['click']} arrow>
-                    <a onClick={(e) => e.preventDefault()} style={{ marginLeft: '30px' }}>
-                        <Space>
-                            <UserOutlined />
-                            victorseraphin@gmail.com
-                            <CaretDownOutlined />
-                        </Space>
-                    </a>
-                </Dropdown>
-                */}
             </Profile>
         </Container>
     );

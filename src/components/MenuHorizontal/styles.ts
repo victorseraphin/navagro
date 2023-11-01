@@ -273,6 +273,10 @@ export const MenuAntd = styled(Menu)`
 
         >.ant-menu-submenu-open::after{
             border-bottom-color: #ff7f74;   
+
+            .ant-menu-submenu-popup {
+                color:red;
+            }
         }
 
         >.ant-menu-submenu-selected {
@@ -291,21 +295,18 @@ export const MenuAntd = styled(Menu)`
 
 
 
-
-
+        
 
 
         
-        >.ant-menu-submenu-popup .ant-menu-light .ant-menu-sub .ant-menu-vertical .ant-menu-item:hover {
-            color: red;
-            background-color: green !important;
-        }
-        >.ant-menu-submenu-popup .ant-menu-light .ant-menu-sub .ant-menu-vertical .ant-menu-item-selected {
-            color: red;
-            background-color: green !important;
-        }
 
 
+    }
+    >.ant-menu-submenu .ant-menu-submenu-popup .ant-menu .ant-menu-light ,css-dev-only-do-not-override-zjzpde .ant-menu-submenu-placement-bottomLeft{
+  
+            color: red;
+            background: #ffffff;
+        
     }
 `;
 

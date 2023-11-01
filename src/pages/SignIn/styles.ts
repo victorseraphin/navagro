@@ -9,7 +9,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-    background-color: ${props => props.theme.colors.primary};
+    background-color: #48b096;
 `;
 
 export const Logo = styled.div`
