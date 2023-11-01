@@ -158,10 +158,8 @@ export const DropDown = styled(StyledLi)`
         border-radius: 5px 5px 5px 5px;
         -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);        
         top: 45px;
-        margin-right:10px;
-        
-    }
-    
+        margin-right:10px;        
+    }   
     
 `;
 

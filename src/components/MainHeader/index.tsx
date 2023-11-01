@@ -28,6 +28,7 @@ import {
 
 
 import { MdClose, MdMenu, MdOutlineKeyboardArrowDown, MdOutlineViewKanban } from 'react-icons/md';
+import Link from 'antd/es/typography/Link';
 
 
 
@@ -48,20 +49,6 @@ const MainHeader: React.FC = () => {
     const handleToggleMenu = () => {
         setToggleMenuIsOpened(!toggleMenuIsOpened);
     }
-
-    const items: MenuProps['items'] = [
-        {
-            label: <a href="/list/entry-balance">Perfil</a>,
-            key: '0',
-        },
-        {
-            type: 'divider',
-        },
-        {
-            label: <a href="/list/entry-balance">Sair</a>,
-            key: '1',
-        },
-    ];
     const menuProfile = (
         <Menu mode="inline">
             <Menu.ItemGroup >
@@ -105,30 +92,6 @@ const MainHeader: React.FC = () => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
-
-    const handleClose = (event: Event | React.SyntheticEvent) => {
-        if (
-            anchorRef.current &&
-            anchorRef.current.contains(event.target as HTMLElement)
-        ) {
-            return;
-        }
-
-        setOpen(false);
-    };
-
-    function handleListKeyDown(event: React.KeyboardEvent) {
-        if (event.key === 'Tab') {
-            event.preventDefault();
-            setOpen(false);
-        } else if (event.key === 'Escape') {
-            setOpen(false);
-        }
-    }
-
     // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
     React.useEffect(() => {
@@ -148,40 +111,35 @@ const MainHeader: React.FC = () => {
                     {toggleMenuIsOpened ? <MdClose /> : <MdMenu />}
                 </ToggleMenu>
                 <Title>NavAgro</Title>
-                <Toggle
+                {<Toggle
 
                     labelLeft="Light"
                     labelRight="Dark"
                     checked={darkTheme}
                     onChange={handleChangeTheme}
-                />
+    />//*/
+}
             </Header>
 
             <Profile>
-                <Dropdown overlay={menuConfig} trigger={["click"]} placement="bottomRight" arrow>
-                    <Space>
-                        <SettingFilled />
-                        Configurações
-                        <CaretDownOutlined />
-                    </Space>
-                </Dropdown>
-                <Dropdown overlay={menuProfile} trigger={["click"]} placement="bottomRight" arrow >
-                    <Space style={{ marginLeft: '30px' }}>
-                        <UserOutlined />
-                        victorseraphin@gmail.com
-                        <CaretDownOutlined />
-                    </Space>
-                </Dropdown>
-
-                <Menu mode="horizontal">
-                
-                <Menu.SubMenu icon={<SettingFilled />} title="Configurações">
-                    <Menu.Item>Programas</Menu.Item>
-                </Menu.SubMenu>
-                <Menu.SubMenu icon={<UserOutlined />} title="Lançamento Entrada">
-                    <Menu.Item>victorseraphin@gmail.com</Menu.Item>
-                </Menu.SubMenu>
-            </Menu>
+                <Link style={{ color: 'white' }}>
+                    <Dropdown overlay={menuConfig} trigger={["click"]} placement="bottomRight" arrow >
+                        <Space>
+                            <SettingFilled />
+                            Configurações
+                            <CaretDownOutlined />
+                        </Space>
+                    </Dropdown>
+                </Link>
+                <Link style={{ color: 'white' }}>
+                    <Dropdown overlay={menuProfile} trigger={["click"]} placement="bottomRight" arrow >
+                        <Space style={{ marginLeft: '30px' }}>
+                            <UserOutlined />
+                            victorseraphin@gmail.com
+                            <CaretDownOutlined />
+                        </Space>
+                    </Dropdown>
+                </Link>
 
                 {/*
                 <Dropdown menu={{ items }} placement="bottomRight" trigger={['click']} arrow>

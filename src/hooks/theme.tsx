@@ -43,7 +43,7 @@ const ThemeProvider: React.FC = ({ children }) => {
     });
 
     const toggleTheme = () => {
-        if(theme.title === 'dark'){
+        if(theme.title == 'dark'){
             setTheme(light);
             localStorage.setItem('@websitenavagro:theme', JSON.stringify(light));
         }else{

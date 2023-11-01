@@ -31,13 +31,14 @@ import {
     SubMenuAntd,
 } from './styles';
 
-import { CaretDownOutlined, UserOutlined, SettingFilled, MenuOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, UserOutlined, SettingFilled, DashboardFilled  } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space, Menu } from 'antd';
+import Link from 'antd/es/typography/Link';
 
 
 
-const MenuHorizontal: React.FC = () => {
+const MenuHorizontal: React.FC = (props) => {
     const { signOut } = useAuth();
     const { toggleTheme, theme } = useTheme();
 
@@ -46,17 +47,29 @@ const MenuHorizontal: React.FC = () => {
 
 
 
-    const menuCadastros = (
-        <Menu mode="inline">
+    const menuProfile = (
+        <MenuAntd mode="horizontal">
             <Menu.ItemGroup >
-                <Menu.Item className="cursor-pointer p-2" key="1" >
+                <Menu.Item key="1" >
+                    <a href="/meus_dados">Programas</a>
+                </Menu.Item>
+                <Menu.Item key="2" onClick={signOut}>
+                    Empresas
+                </Menu.Item>
+            </Menu.ItemGroup>
+        </MenuAntd>
+    );
+    const menuProfile2 = (
+        <MenuAntd mode="horizontal">
+            <Menu.ItemGroup >
+                <Menu.Item key="1" >
                     <a href="/meus_dados">Perfil</a>
                 </Menu.Item>
-                <Menu.Item className="cursor-pointer p-2" key="2" onClick={signOut}>
+                <Menu.Item key="2" onClick={signOut}>
                     Sair
                 </Menu.Item>
             </Menu.ItemGroup>
-        </Menu>
+        </MenuAntd>
     );
     const items: MenuProps['items'] = [
         {
@@ -207,6 +220,7 @@ const MenuHorizontal: React.FC = () => {
     ];
 
     const [current, setCurrent] = useState('mail');
+
     const onClick: MenuProps['onClick'] = (e) => {
         console.log('click ', e);
         setCurrent(e.key);
@@ -216,67 +230,36 @@ const MenuHorizontal: React.FC = () => {
     return (
         <Container menuIsOpen={toggleMenuIsOpened}>
 
-            <Menu mode="horizontal">
-                <Menu.Item>
+            <MenuAntd mode="horizontal" triggerSubMenuAction={"click"} activeKey={current} >
+                <MenuAntd.Item key="/dashboard">
                     <MdOutlineViewKanban />
-                    <span >Dashboard</span>   
-                </Menu.Item>
-                <SubMenu icon={<MdOutlineViewList />} title="Cadastro">
-                    <Menu.Item>SubMenuItem</Menu.Item>
-                </SubMenu>
-                <SubMenu icon={<MdShoppingCart />} title="Lançamento Entrada">
-                    <Menu.Item>SubMenuItem</Menu.Item>
-                </SubMenu>
-            </Menu>
-            {/*
-            <MenuAntd mode="horizontal">
-                <MenuAntd.Item>
-                    <MdOutlineViewKanban />
-                    <span >Dashboard</span>   
+                    <span ><Link href="/dashboard">Dashboard</Link></span>
                 </MenuAntd.Item>
                 <SubMenuAntd icon={<MdOutlineViewList />} title="Cadastro">
-                    <MenuAntd.Item>SubMenuItem</MenuAntd.Item>
+                    <MenuAntd.Item key="/cadastros/bens" ><Link href="/cadastros/bens">Bens</Link></MenuAntd.Item>
+                    <MenuAntd.Item>Centro de Custos</MenuAntd.Item>
+                    <MenuAntd.Item>Centro de Lucros</MenuAntd.Item>
+                    <MenuAntd.Item>Funcionários</MenuAntd.Item>
+                    <MenuAntd.Item>Insumos</MenuAntd.Item>
+                    <MenuAntd.Item>Clientes / Fornecedores</MenuAntd.Item>
+                    <MenuAntd.Item>Taxas</MenuAntd.Item>
+                    <MenuAntd.Item>Unidade de negócios</MenuAntd.Item>
                 </SubMenuAntd>
                 <SubMenuAntd icon={<MdShoppingCart />} title="Lançamento Entrada">
-                    <MenuAntd.Item>SubMenuItem</MenuAntd.Item>
+                    <MenuAntd.Item>Insumos</MenuAntd.Item>
+                    <MenuAntd.Item>Pagamento de funcionários</MenuAntd.Item>
+                </SubMenuAntd>
+                <SubMenuAntd icon={<MdCardGiftcard />} title="Lançamento Saída">
+                    <MenuAntd.Item>Produtos</MenuAntd.Item>
+                </SubMenuAntd>
+                <SubMenuAntd icon={<MdInsertChartOutlined />} title="Relatório Gerenciais" >
+                    <MenuAntd.Item>Demonstração do Resultado</MenuAntd.Item>
+                    <MenuAntd.Item>Resumo de Entrada</MenuAntd.Item>
+                    <MenuAntd.Item>Resumo de Saída</MenuAntd.Item>
                 </SubMenuAntd>
             </MenuAntd>
-            <MenuContainer>
-                <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
-                
-                <MenuItemLink href="/dashboard">
-                    <MdOutlineViewKanban />
-                    Dashboard
-                </MenuItemLink>
 
-                <Dropdown overlay={menuCadastros} trigger={["click"]} placement="bottomRight" arrow>
-                    <Space>
-                        <SettingFilled />
-                        Cadastros
-                    </Space>
-                </Dropdown>
-
-                <MenuItemLink href="/cadastros/bens">
-                    <MdOutlineViewList />
-                    Cadastros
-                </MenuItemLink>
-
-                <MenuItemLink href="/entradas/insumos">
-                    <MdShoppingCart />
-                    Lançamento Entrada
-                </MenuItemLink>
-
-                <MenuItemLink href="/saidas/produtos">
-                    <MdCardGiftcard />
-                    Lançamento Saída
-                </MenuItemLink>
-
-                <MenuItemLinkRight href="/relatoriogerencial/dre">
-                    <MdInsertChartOutlined />
-                    Relatório Gerenciais
-                </MenuItemLinkRight>
-    
-            </MenuContainer>*/}
+            
 
         </Container>
     );
