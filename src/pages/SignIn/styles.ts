@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../../components/Button';
 
 export const Container = styled.div`
     height: 100vh;
@@ -9,7 +10,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-    background-color: #48b096;
+    background-color: ${props => props.theme.colors.tertiary};
 `;
 
 export const Logo = styled.div`
@@ -24,8 +25,7 @@ export const Logo = styled.div`
     }
 
     > img {
-        width: 40px;
-        height: 40px;
+        width: 300px;
     }
 `;
 
@@ -37,7 +37,7 @@ export const Form = styled.form`
 
     border-radius: 10px;
 
-    background-color: ${props => props.theme.colors.tertiary};
+    background-color: #00ba8b30;
 `;
 
 export const FormTitle = styled.h1`
@@ -49,7 +49,21 @@ export const FormTitle = styled.h1`
         content: '';
         display: block;
         width: 55px;
-        border-bottom: 10px solid ${props => props.theme.colors.warning};  
+        border-bottom: 10px solid #00ba8b  
     }
+`;
+export const Botao = styled(Button)`
+    width: 100%;
+    margin: 7px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #00ba8b;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+
+    
+  
 `;
 
